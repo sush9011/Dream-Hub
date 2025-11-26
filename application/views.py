@@ -135,3 +135,9 @@ def admin_dashboard(request):
         "enquiries": enquiries,
         "bookings": bookings,
     })
+
+@staff_member_required
+def delete_enquiry(request, id):
+    enquiry = enquiry_table.objects.get(id=id)
+    enquiry.delete()
+    return redirect('custom_admin_dashboard')
